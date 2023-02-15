@@ -1,0 +1,54 @@
+<div class="container">
+    <h1>Create New</h1>
+   
+    <a href="#" routerLink="/post/index" class="btn btn-primary">Back</a>
+         
+    <form [formGroup]="form" (ngSubmit)="submit()">
+   
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input 
+            formControlName="EmployeeName"
+            id="Name" 
+            type="text"
+            name="Name"           
+            class="form-control">
+
+                <label for="Fname">Father's Name</label>
+                <input 
+                formControlName="FatherName"
+                id="Fname" 
+                name="Fname"           
+                type="text"
+                class="form-control"> 
+                <label for="Email">Email</label>
+                <input 
+                formControlName="EmailId"
+                id="Email" 
+                name="Email"           
+                type="text"
+                class="form-control">  
+                <label for="DOJ">D.O.j</label>
+                <input 
+                formControlName="DOJ"
+                id="DOJ" 
+                name="DOJ"           
+                type="date"
+                class="form-control">               
+                <label for="Dname" >Department</label>
+                <input 
+                formControlName="Department"
+                id="Dname" 
+                type="text"
+                  name="Dname"           
+                class="form-control">
+            <div *ngIf="f['FatherName'].touched && f['FatherName'].invalid" class="alert alert-danger">
+                <div *ngIf="f['FatherName'].errors && f['FatherName'].errors['required']">Name is required.</div>
+            </div>
+        </div>
+        <hr>
+        
+   
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+    </form>
+</div>

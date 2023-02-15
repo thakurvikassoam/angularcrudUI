@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Profile</h1>
+   
+    
+    <div>
+        <p> <strong>ID:</strong>
+       {{ post.employeeID }}</p> 
+    </div>
+    
+    <div>
+        <p> <strong>Name:</strong>
+        {{ post.employeeName }}</p>
+    </div>
+    
+    <div>
+        <p> <strong>FatherName:</strong>
+         {{ post.fatherName }}</p> 
+    </div>
+    <div>
+       <p> <strong>Email:</strong>
+        {{ post.emailId }}</p>
+    </div>
+    <div>
+        <p><strong>D.O.J:</strong>
+         {{post.doj |date }}</p>
+    </div>
+    <hr>
+    <a href="#" routerLink="/post/index" class="btn btn-primary">Back</a>
+</div>
