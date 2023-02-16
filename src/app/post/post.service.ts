@@ -50,9 +50,9 @@ export class PostService {
     )
   }
     
-  delete(id: number){
+  delete(id: any){
     debugger
-    return this.httpClient.delete<Post>(this.apiURL + 'api/Home/DeleteEmployee/'+id, this.httpOptions)
+    return this.httpClient.post<Post>(this.apiURL + 'api/Home/DeleteEmployee/',id, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

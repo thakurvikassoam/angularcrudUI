@@ -1,10 +1,14 @@
 <div class="container">
     <h1>Angular  CRUD </h1>
    
-    <a href="#" routerLink="/post/create/" class="btn btn-primary">Create New</a>  
+    <a href="#" routerLink="/post/create/" class="btn btn-primary">Create New</a>
+    <div style="text-align: right;">
+    <button type="button" title="Delete" *ngIf="show" (click)="DeleteSelected()"  class="btn btn-danger">Delete</button> 
+  </div> 
     <hr>
     <table class="table table-bordered">
       <tr>
+        <th><input type="checkbox" (click)="Selectall($event)"></th>
         <th>ID</th>
         <th>Name</th>
         <th>Father Name</th>
@@ -13,6 +17,7 @@
         <th width="220px">Action</th>
       </tr>
       <tr *ngFor="let post of posts">
+        <td><input type="checkbox" [checked]="post.Checked" (click)="singleselect(post.employeeID,$event)" ></td>
         <td>{{ post.employeeID }}</td>
         <td>{{ post.employeeName }}</td>
         <td>{{ post.fatherName }}</td>
@@ -21,7 +26,7 @@
         <td>
           <a href="#" [routerLink]="['/post/', post.employeeID, 'view']"  class="btn btn-info">View</a>
           <a href="#" [routerLink]="['/post/', post.employeeID, 'edit']" style="color:black" class="btn btn-success">Edit</a>                  
-          <button type="button" (click)="deletePost(post.employeeID)" style="color:black" class="btn btn-danger">Delete</button>
+          <button type="button" (click)="SingleDelete(post.employeeID)" style="color:black" class="btn btn-danger">Delete</button>
         </td>
       </tr>
     </table>

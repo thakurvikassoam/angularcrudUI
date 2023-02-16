@@ -10,7 +10,8 @@ import { Post } from '../post';
 export class IndexComponent implements OnInit {
        
   posts: Post[] = [];
-     
+  Ids:number[]=[];
+  show:boolean=false;
   /*------------------------------------------
   --------------------------------------------
   Created constructor
@@ -36,12 +37,91 @@ export class IndexComponent implements OnInit {
    *
    * @return response()
    */
-  deletePost(id:number){
+  // let srs: string = '';
+  // let checked: boolean = false;
+  // items.forEach((element) => {
+    
+  //   if (element.isChecked && element.email != "") {
+  //     checked = true;
+  //     if (srs != '')
+  //       srs += ',' + element.email;
+  //     else
+  //       srs = element.email;
+  //   }
+  // });
+  sendEmail(items: any[]) {    
+    let srs: string = '';
+    let checked: boolean = false;
+    items.forEach((element) => {
+      
+      if (element.isChecked && element.email != "") {
+        checked = true;
+        if (srs != '')
+          srs += ',' + element.email;
+        else
+          srs = element.email;
+      }
+    });
+   if (srs == '') {
+      alert('Failed! Select row to send massage.');
+    }
+    else
+    {
+      
+    }
+  }
+  
+  deletePost(id:any){    
     this.postService.delete(id).subscribe(res => {
          this.posts = this.posts.filter(item => item.employeeID !== id);
-         console.log('Post deleted successfully!');
+         console.log('deleted successfully!');
          alert('deleted successfully!');
     })
   }
-     
+SingleDelete(id:number){
+this.Ids.push(id);
+this.deletePost(this.Ids);
+}
+
+  Selectall(event:any)
+  {
+    debugger;
+    if(event.target.checked){
+      this.show=true;
+this.posts.forEach(element=>{
+  element.Checked=true;
+  this.Ids.push(element.employeeID);
+})
+
+}
+else{
+  this.show=false;
+  this.posts.forEach(element=>{
+    element.Checked=false;
+  })
+  this.Ids=[];
+}
+
+  }
+  singleselect(id:number,event:any){
+    debugger;
+ if(event.target.checked)
+ {
+  this.show=true;
+  this.Ids.push(id);
+ }
+ else
+ {
+ 
+  this.Ids=this.Ids.filter(x=>x!=id);
+  if(this.Ids.length==0){
+    this.show=false;
+  }
+ }
+  }
+  DeleteSelected()
+  {
+    this.deletePost(this.Ids);
+
+  }
 }

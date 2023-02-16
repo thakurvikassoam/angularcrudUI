@@ -5,5 +5,6 @@ export interface Post {
     department: string;
     emailId: string;
     doj:Date;   
+    Checked:boolean;
 
     }
